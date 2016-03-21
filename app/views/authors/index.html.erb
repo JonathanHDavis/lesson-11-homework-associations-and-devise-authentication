@@ -1,0 +1,36 @@
+<h1>Authors</h1>
+
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
+<%= link_to "Home", root_path %>
+<% if current_user %>
+  <%= link_to "Create New Author", new_author_path %>
+<% end %>
+<br />
+<br />
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tbody>
+    <% @authors.each do |author| %>
+      <tr>
+        <td><%= link_to(author.first_name, author_path(author)) %></td>
+        <td><%= author.last_name %></td>
+
+
+        <% if current_user %>
+          <td><%= link_to "edit", edit_author_path(author) %></td>
+          <td><%= link_to "delete", author_path(author), method: :delete, data: {confirm: "Are you sure you want to delete this author?"}%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

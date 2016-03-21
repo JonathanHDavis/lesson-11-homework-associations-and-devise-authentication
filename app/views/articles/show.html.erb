@@ -1,0 +1,39 @@
+<%= link_to "Back to Article List", articles_path %>
+
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
+<p>
+  <strong>Title:</strong> <%= @article.title %>
+</p>
+
+<p>
+  <strong>Body:</strong> <%= @article.body %>
+</p>
+
+<p>
+
+<p>
+  <strong>Author First Name:</strong> <%= @article.author.try(:first_name) %>
+</p>
+
+<p>
+  <strong>Author Last Name:</strong> <%= @article.author.try(:last_name) %>
+</p>
+
+<p>Tags</p>
+<ul>
+  <% @article.tags.each do |tag| %>
+    <li><%= tag.name %></li>
+  <% end %>
+</ul>
+
+<br />
+<% if current_user %>
+  <td><%= link_to "edit", edit_article_path(@article) %></td>
+  <td><%= link_to "new", new_article_path %></td>
+<% end %>
+

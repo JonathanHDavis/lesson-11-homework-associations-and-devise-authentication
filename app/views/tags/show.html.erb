@@ -1,0 +1,17 @@
+<%= link_to "Back to Tags List", tags_path %>
+
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
+<p>
+  <strong>Tag Name:</strong> <%= @tag.name %>
+</p>
+
+<br />
+<% if current_user %>
+  <td><%= link_to "edit", edit_tag_path(@tag) %></td>
+  <td><%= link_to "new", new_tag_path %></td>
+<% end %>

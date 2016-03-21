@@ -1,0 +1,21 @@
+<%= link_to "Back to Author List", authors_path %>
+
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
+<p>
+  <strong>Author First Name:</strong> <%= @author.first_name %>
+</p>
+
+<p>
+  <strong>Author Last Name:</strong> <%= @author.last_name %>
+</p>
+
+<br />
+<% if current_user %>
+  <td><%= link_to "edit", edit_author_path(@author) %></td>
+  <td><%= link_to "new", new_author_path %></td>
+<% end %>

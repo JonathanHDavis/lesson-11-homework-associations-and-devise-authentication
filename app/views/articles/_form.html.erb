@@ -1,0 +1,36 @@
+<%= form_for @article do |a| %>
+
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
+  <% if @article.errors.any? %>
+    <% @article.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  <% end %>
+
+  <p>
+    <%= a.label :title %>
+    <%= a.text_field :title %>
+  </p>
+
+  <p>
+    <%= a.label :body %><br>
+    <%= a.text_field :body %>
+  </p>
+
+  <p>
+    <%= a.label :author %><br>
+    <%= collection_select(:article, :author_id, Author.all, :id, :last_name, include_blank: true) %>
+  </p>
+
+  <p>
+    <%= collection_check_boxes(:article, :tag_ids, Tag.all, :id, :name) %>
+  </p>
+
+  <%= a.submit %>
+
+<% end %>

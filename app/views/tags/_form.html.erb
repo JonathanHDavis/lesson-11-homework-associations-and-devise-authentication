@@ -1,0 +1,20 @@
+<%= form_for @tag do |t| %>
+
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
+  <% if @tag.errors.any? %>
+    <% @tag.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  <% end %>
+
+  <p>
+    <%= t.text_field :name %>
+  </p>
+
+  <%= t.submit %>
+<% end %>

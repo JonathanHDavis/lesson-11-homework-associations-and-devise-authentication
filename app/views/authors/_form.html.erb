@@ -1,0 +1,26 @@
+<%= form_for @author do |a| %>
+
+<ul class="nav navbar-nav">
+  <li><%=link_to "LOGIN", user_session_path %></li>
+  <li><%= link_to('SIGN UP', new_user_registration_path)  %></li>
+  <li><%=link_to('LOGOUT', destroy_user_session_path, :method => :delete) %></li>
+</ul>
+
+  <% if @author.errors.any? %>
+    <% @author.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  <% end %>
+
+  <p>
+    <%= a.label :first_name %><br>
+    <%= a.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= a.label :last_name %><br>
+    <%= a.text_field :last_name %>
+  </p>
+
+  <%= a.submit %>
+<% end %>
